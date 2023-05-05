@@ -42,10 +42,6 @@ props.headers.forEach((header) => {
   if (header.filterable) filterValues.set(header.key, ref<string>(""));
 });
 
-const headersToSelect = computed(() => {
-  return internalHeaders.value.filter((header) => header.value !== "actions");
-});
-
 // Computed properties
 const internalHeaders = computed(() => {
   return props.headers.map((header) => {
@@ -57,6 +53,10 @@ const internalHeaders = computed(() => {
       isVisible: header.isVisible ?? true,
     };
   });
+});
+
+const headersToSelect = computed(() => {
+  return internalHeaders.value.filter((header) => header.value !== "actions");
 });
 
 // Computed property for filtered items
@@ -104,6 +104,7 @@ function resetFilterValues() {
     value.value = "";
   });
 }
+
 
 function exportNames() {
   return {
